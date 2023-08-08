@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Teacher Record | Enrolment</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!--  bootstrap css cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body class="bg-light bg-gradient">
+
+    <!--   navigation bar -->
+    <nav class="navbar bg-dark border-bottom border-bottom-dark sticky-top bg-body-tertiary navbar-expand-lg" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="/html/index.html">DigiBolt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse flez" id="navbarNavAltMarkup">
+                <div class="home-btn navbar-nav">
+                    <a class="nav-link" aria-current="page" href="/html/index.html">Home</a>
+                    <a class="nav-link" aria-current="page" href="/html/register-school.html">Register School</a>
+                    <a class="nav-link active" href="/html/teacherRecordForm.html">Add Teacher Records</a>
+                    <a class="nav-link" href="/html/teacherList.html">Teachers</a>
+                </div>
+            <div class="navbar-nav naV-side">
+                    <a class="nav-link" href="/html/signIn.html">Sign In</a>
+                    <a class="nav-link" href="/html/signup.html">Sign Up</a>       
+            </div>
+            </div>
+        </div>
+    </nav>
+    <!-- end of navigation bar -->
+
+    <div class="card container mx-auto mt-5 formBody bg-secondary-gradient">
+        <div class="card-body">
+          <h3 class="card-title text-center  mt-4">Teacher Record Form</h3>
+          <p class="card-text">
+
+            <form class="row g-3 mt-4" action="/html/teacherprofile.html" method="POST">
+                <div class="col-md-6">
+                    <label for="surname" class="form-label">Surname</label>
+                    <input type="text" class="form-control" placeholder="Surname" name="surname" aria-label="surname" required >
+                </div>
+                <div class="col-md-6">
+                    <label for="othernames" class="form-label">Other names</label>
+                    <input type="text" class="form-control" placeholder="Other names" name="othernames" aria-label="Other names" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="dateOfbirth" class="form-label">Date of birth:</label>
+                    <input type="date" id="dateOfbirth" class="form-control" aria-label="Other names" name="dateOfbirth" required> 
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="inputEmail4" name="email" required>
+                </div>
+                <div class="col-md-2">
+                  <label for="staff-id" class="form-label">Staff ID</label>
+                  <input type="text" class="form-control" id="staff-id" name="staff-id" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="ntc" class="form-label">NTC Number</label>
+                  <input type="text" class="form-control" id="ntc" name="ntc" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="regNo" class="form-label">Registered Number</label>
+                  <input type="text" class="form-control" id="regNo" name="regNo" required>
+                </div>
+                <div class="col-md-4">
+                  <label for="ssnit" class="form-label">SSNIT Number</label>
+                  <input type="text" class="form-control" id="ssnit" name="ssnit" required>
+                </div>
+                <div class="col-md-2">
+                  <label for="present-rank" class="form-label">Present Rank</label>
+                  <input type="text" class="form-control" id="present-rank" name="present-rank" required>
+                </div>
+                <div class="col-md-4">
+                  <label for="year-to-rank" class="form-label">Date Promoted to Rank</label>
+                  <input type="date" class="form-control" id="year-to-rank" name="year-to-rank" required>
+                </div>
+                
+                <div class="col-md-3">
+                  <label for="contact" class="form-label">Contact Number</label>
+                  <input type="text" class="form-control" id="contact" name="contact" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="residence" class="form-label">Residence</label>
+                  <input type="text" class="form-control" id="residence" name="residence" required>
+                </div>
+                <div class="col-md-2">
+                  <label for="salary" class="form-label">Salary Level</label>
+                  <input type="text" class="form-control" id="salary" name="salary" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="periods-per-week" class="form-label">Periods per week</label>
+                  <input type="number" class="form-control" id="periods-per-week" name="periods-per-week" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="previous-station" class="form-label">Previous station</label>
+                  <input type="text" class="form-control" id="previous-station" name="previous-station" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="gender" class="form-label">Gender</label> <br>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                        Male
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" required>
+                        <label class="form-check-label" for="exampleRadios2">
+                        Female
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="date-of-appointment" class="form-label">Date of first Appointment</label>
+                    <input type="date" class="form-control" id="date-of-appointment" name="date-of-appointment" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="date-present-station" class="form-label">Date posted to present station</label>
+                    <input type="date" class="form-control" id="date-present-station" name="date-present-station" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="subject-teaching" class="form-label">Subjects teaching</label>
+                    <input type="text" class="form-control" id="subject-teaching" name="subject-teaching" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="bank-name" class="form-label">Bank name</label>
+                    <input type="text" class="form-control" id="bank-name" name="bank-name" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="account-number" class="form-label">Account no.</label>
+                    <input type="text" class="form-control" id="account-number" name="account-number" required>
+                </div>
+
+                <div class="col-md-12">
+                    <label for="academic-qualification-name" class="form-label">Name of Academic Qualification</label>
+                    <input type="text" class="form-control d-inline-block" id="academic-qualification-name" name="academic-qualification-name" placeholder="Name of Aca. Qualification" required>
+                    <label for="academic-qualification-date" class="form-label">Date of Academic Qualification</label>
+                    <input type="date" class="form-control d-inline-block" id="academic-qualification-date" name="academic-qualification-date" required>
+                  </div>
+                <div class="col-md-12">
+                    <label for="professional-qualification-name" class="form-label">Name of Professional Qualification</label>
+                    <input type="text" class="form-control d-inline-block" id="professional-qualification-name" name="professional-qualification-name" placeholder="Name of Prof. Qualification" required>
+                    <label for="professional-qualification-date" class="form-label">Date of Professional Qualification</label>
+                    <input type="date" class="form-control d-inline-block" id="professional-qualification-date" name="professional-qualification-date" required>
+                  </div>
+                <div class="col-md-12">
+                    <label for="schedule-name" class="form-label">Name of Duties Assigned</label>
+                    <input type="text" class="form-control d-inline-block" id="schedule-name" name="schedule-name" placeholder="Name of schedules/duties assigned" required>
+                </div>
+                  
+                <div class="row text-center px-3 mt-3">
+                  <button type="submit" class="btn btn-primary d-inline-block mx-auto col-6">Submit</button>
+                </div>
+              </form>
+        </div>
+      </div>
+
+      <a href="/html/teacherprofile.html" target="_blank" rel="noopener noreferrer"> teacherprofile link </a>
+
+       <!-- footer -->
+       <div class="bg-dark mt-5">
+        <div class="container text-bg-dark">
+            <div class=" card-footer py-3 bg-transparent  text-center">
+                Copyright Reserved || DigiBolt || Made with Bolt
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<!-- bootstrap js cdn -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</html>

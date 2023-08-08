@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block title %}
+  Register-User | Enrolment 
+{% endblock %}
+
+   
+
+{% block content %}
+    <div class="card container mx-auto mt-5 mb-5 col-md-4 bg-secondary-gradient">
+        <div class="card-body">
+          <h3 class="card-title fs-1 text-center mt-4">Adjiringanor JHS</h3>
+          <small class="card-title text-md-center mt-2 mx-auto d-block text-muted">Registration Portal</small>
+         
+          <p class="card-text mt-5">
+            <form class="row g-3" action=" " method="POST">
+
+              {% csrf_token %}
+              {% if form.errors %}
+              {% comment %} <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  
+                </button>
+              </div> {% endcomment %}
+
+
+                <div class="alert alert-warning alert-dimissible  fade show " role="alert">
+                  <small>Your Form Has Errors
+                  {% for field in form %}
+                    {% if field.errors %} 
+                    {{ field.errors }}
+                    {% endif %}
+                  {% endfor %}
+
+                  <button type="button" class="btn-close alat-btn" data-bs-dismiss="alert" arial-label="Close">
+                    
+                  </button>
+                </small>
+                </div>
+              {% endif %}  
+              
+              {{ form.as_p }}
+                <div class="col-12">
+                  <button class="btn btn-primary mx-auto d-block my-4" type="submit">Create account</button>
+                </div>
+              </form>
+              <p class="text-end text-md-center">Already Registered? <a  href="{% url 'sign-in' %}">Sign In</a></p>
+        </div>
+    </div>
+
+{% endblock %}
