@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+  Teachers | Enrolment
+{% endblock  %}
+
+
+{% block content %}
+
+    <div class="card container mx-auto mt-5 bg-secondary-gradient">
+        <div class="card-body">
+            <h3 class="card-title fs-3 text-center mt-2">List of Teachers Registered</h3>
+
+            <table class="table mt-4 table-sm table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">S/No.</th>
+                    <th scope="col">Name of Staff</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Staff ID</th>
+                    <th scope="col">NTC No.</th>
+                    <th scope="col">Registered No.</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark James</td>
+                    <td>1/01/2002</td>
+                    <td>kofi@gmail.com</td>
+                    <td>709715</td>
+                    <td>pt/0002333/1989</td>
+                    <td>1267/11</td>
+                    <td><button type="button" class="btn btn-outline-primary btn-sm">Details</button></td>
+                  </tr>
+                 
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Christopher Debrah</td>
+                    <td>1/01/2002</td>
+                    <td>kofi@gmail.com</td>
+                    <td>709715</td>
+                    <td>pt/0002333/1989</td>
+                    <td>1267/11</td>
+                    <td><button type="button" class="btn btn-outline-primary btn-sm">Details</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Christopher Debrah</td>
+                    <td>1/01/2002</td>
+                    <td>kofi@gmail.com</td>
+                    <td>709715</td>
+                    <td>pt/0002333/1989</td>
+                    <td>1267/11</td>
+                    <td><button type="button" class="btn btn-outline-primary btn-sm">Details</button></td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+   
+        </div>
+      </div>
+{% endblock  %}

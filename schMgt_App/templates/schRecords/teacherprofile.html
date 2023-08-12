@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Facilitator Profile | Enrolment
+{% endblock %}
+
+   
+ 
+
+{% block content %}
+
+  
+
+    <div class="card container my-5" style="width: 70rem;">
+        <div class="card-body">
+          <h5 class="card-title">Personal Details</h5>
+
+          <!--  row 1 -->
+          <div class="row">
+            <div class="col">
+
+                <div class="card mb-3" >
+                    <div class="row g-0">
+                      <div class="col-md-5">
+                        <img src="{% static 'img/facilitator.jpg' %}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-7 ps-5">
+                        <div class="card-body">
+                          <h5 class="card-title fs-4">{{ facilitator.surname }} {{ facilitator.othernames }}</h5>
+                            <div class="p-2">
+                                <div class="d-flex flex-column mb-3">
+                                    <div>Age:<b>{{ facilitator.age }} </b></div>
+                                    <div>Sex: <b>{{ facilitator.sex }}</b></div>
+                                    <div>Email: <b>{{ facilitator.email }}</b></div>
+                                    <div>Relationship: <b>{{ facilitator.relationship }}</b></div>
+                                    <div>Form Teacher: <b>{{ facilitator.is_FormTeacher }}</b></div>
+                                </div>                  
+                                <button class="card-text btn btn-primary">Read more</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+
+    
+          </div>
+
+        <!-- end of row 1 -->
+
+        <hr>
+
+         <!--  row 2 -->
+         <div class="row">
+            <div class="col">
+
+                <div class="card container text-bg-light mb-3" style="max-width: 70rem;">
+                    <h5 class="card-title mt-3 text-center">Employment Details</h5>
+                    <div class="card-body">
+                        <div class=" card d-flex flex-row mb-3 justify-content-around">
+                            <div class="p-2">
+                                <div class="d-flex flex-column mb-3">
+                                    <div class="p-2">Subjects Teaching: <b>{{ facilitator.staff_id }} </b></div>
+                                    <div class="p-2">Registered No.: <b>{{ facilitator.regd_no }}</b></div>
+                                    <div class="p-2">NTC Number:: <b>{{ facilitator.ntc_no }}</b></div>
+                                    <div class="p-2">SSNIT Number: <b>{{ facilitator.ssnit_no }}</b></div>
+                                    <div class="p-2">Rank: <b>{{ facilitator.rank }}</b></div>
+                                    <div class="p-2">Salary Level: <b>{{ facilitator.salary }}</b></div>
+                                    <div class="p-2">No. of Periods per week: <b>{{ facilitator.periods_per_week }}</b></div>
+                                    <div class="p-2">Previous station: <b>{{ facilitator.previous_station }}</b></div>
+                                    
+                                </div>                  
+                            </div>
+                            <div class="p-2">
+                                <div class="d-flex flex-column mb-3">
+                                    
+                                    <div class="p-2">Additional Responsibilities: <b>{{ facilitator.appointment_date }}</b></div>
+                                    <div class="p-2">Date to Present station: <b>{{ facilitator.present_station_date }}</b></div>
+                                    <div class="p-2">Date Promoted to Rank: <b>{{ facilitator.rank_date }}</b></div>
+                                    <div class="p-2">Professional Qualification: <b>{{ facilitator.professional_qualification }}</b></div>
+                                    <div class="p-2">Date Obtained (P.Q): <b>{{ facilitator.date_pq }}</b></div>
+                                    <div class="p-2">Academic Qualification: <b>{{ facilitator.academic_quaification }}</b></div>
+                                    <div class="p-2">Date Obtained (A.Q): <b>{{ facilitator.date_aq }}</b></div>
+                                    <div class="p-2">Contact number: <b>{{ facilitator.contact_number }}</b></div>
+                                    
+                                </div>                  
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+
+
+            </div>
+
+           
+        </div>
+
+        <!-- end of row 2 -->
+
+        <hr>
+
+        <!-- row 3 -->
+
+        <div class="card container">
+          
+          <div class="card-body">
+            <h5 class="card-title text-center">Work Responsibilities</h5>
+            <div class=" card d-flex flex-row mb-3 justify-content-evenly">
+              <div class="p-2">
+                  <div class="d-flex flex-column mb-3">
+                      <div class="p-2">Municipal/District:<b>{{ school.municipal }} </b></div>
+                      <div class="p-2">Year Establised: <b>{{ school.year }}</b></div>
+                      <div class="p-2">Type: <b>{{ school.type }}</b></div>
+                      <div class="p-2">Emis Code: <b>{{ school.emis_code }}</b></div>
+                      <div class="p-2">School Number: <b>{{ school.bece_number }}</b></div>
+                  </div>                  
+              </div>
+              <div class="p-2">
+                  <div class="d-flex flex-column mb-3">
+                      <div class="p-2">Headteacher's Name: <b>{{ school.headteacher.name }}</b></div>
+                      <div class="p-2">Email Address: <b>{{ school.email_address }}</b></div>
+                      <div class="p-2">Tel. No.: <b>{{ school.contact_number }}</b></div>
+                      <div class="p-2">Digital Address: <b>{{ school.digital_address }}</b></div>
+                      <div class="p-2">Location: <b>{{ school.location }}</b></div>
+                  </div>                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- end of row 3-->
+          
+
+
+        </div>
+      </div>
+
+
+{% endblock %}

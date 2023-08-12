@@ -4,21 +4,40 @@
 
 <nav class="navbar bg-dark border-bottom border-bottom-dark sticky-top bg-body-tertiary navbar-expand-lg" data-bs-theme="dark">
     <div class="container">
-        <a class="navbar-brand" href="/html/index.html">DigiBolt</a>
+        <a class="navbar-brand" href="{% url 'home' %}">DigiBolt</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse flez" id="navbarNavAltMarkup">
+
+            {% if user.is_authenticated %}
+
             <div class="home-btn navbar-nav">
-                <a class="nav-link" aria-current="page" href="/html/index.html">Home</a>
-                <a class="nav-link" aria-current="page" href="{% url 'register-school' %}">Register School</a>
-                <a class="nav-link" href="/html/teacherRecordForm.html">Add Teacher Records</a>
-                <a class="nav-link" href="/html/teacherList.html">Teachers</a>
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                {% comment %} <a class="nav-link" aria-current="page" href="{% url 'register-school' %}">Register School</a> {% endcomment %}
+                <a class="nav-link" href="{% url 'teacher-record-form' %}">Add Teacher Records</a>
+                <a class="nav-link" href="{% url 'teacher-profile' %}">My Profile</a>
+                {% comment %} <a class="nav-link" href="{% url 'teacher-list' %}">Teachers</a> {% endcomment %}
             </div>
+            <div class="navbar-nav naV-side">
+                <span style="color:#fff;" class="text-muted mt-2">Welcome {{ user.username }}!</span>
+                {% comment %} <a class="nav-link active" href="{% url 'sign-in' %}">Sign In</a> {% endcomment %}
+            <a class="nav-link" href="{% url 'signed-out' %}">Sign Out</a> 
+            </div>
+            {% else %}
+            <div class="home-btn navbar-nav">
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                {% comment %} <a class="nav-link" aria-current="page" href="{% url 'register-school' %}">Register School</a>
+                <a class="nav-link" href="{% url 'teacher-record-form' %}">Add Teacher Records</a>
+                <a class="nav-link" href="{% url 'teacher-profile' %}">Teacher Profile</a>
+                <a class="nav-link" href="{% url 'teacher-list' %}">Teachers</a> {% endcomment %}
+            </div>
+        </div>
+
         <div class="navbar-nav naV-side">
                 <a class="nav-link active" href="{% url 'sign-in' %}">Sign In</a>
-            <a class="nav-link" href="{% url 'register' %}">Sign Up</a>       
+            <a class="nav-link" href="{% url 'register' %}">Sign Up</a> 
         </div>
-        </div>
+        {% endif %}
     </div>
 </nav>
