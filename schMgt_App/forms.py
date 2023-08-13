@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms 
+from .models import School
 
 
 class RegisterForm(UserCreationForm):
@@ -31,3 +32,22 @@ class RegisterForm(UserCreationForm):
         self.fields['password2'].label = ''
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
+
+class SchoolForm(forms.ModelForm):
+    class Meta:
+        model = School
+        fields = "__all__"
+        
+    def __init__(self, *args, **kwargs):
+        super(SchoolForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = ''
+        self.fields['municipal'].label = ''
+        self.fields['year_estd'].label = ''
+        self.fields['type'].label = ''
+        self.fields['emis_code'].label = ''
+        self.fields['head_name'].label = ''
+        self.fields['email'].label = ''
+        self.fields['tel_no'].label = ''
+        self.fields['digital_add'].label = ''
+        self.fields['location'].label = ''
+        self.fields['sch_no'].label = ''

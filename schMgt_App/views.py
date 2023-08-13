@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import School
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegisterForm
+from .forms import RegisterForm , SchoolForm
 
 
 # Create your views here.
@@ -60,7 +60,25 @@ def register(request):
 
 
 def registerSchool(request):
-    return render (request, 'accounts/register-sch.html', {} )
+    if request.user.is_authenticated:
+        school_form = SchoolForm
+        if request.method == "POST":
+            school_form = SchoolForm(request.POST)
+            if school_form.is_valid:
+                school_form.save()
+                messages.success(request, 'School Registered Successfully')
+                return redirect ('register-school')
+            else:
+                messages.success(request, 'Retry again')
+                # return redirect ('register-school')
+                return render (request, 'accounts/register-sch.html', {'school_form': school_form} )
+        return render (request, 'accounts/register-sch.html', {'school_form': school_form} )
+    else:
+        messages.success(request, 'sign in first')
+        return redirect ('sign-in')
+        # return render (request, 'accounts/register-sch.html', {'school_form': school_form} )
+
+        
 
 
 def unsignedSearch(request):
@@ -81,7 +99,7 @@ def homeSearch(request):
     else:
        
         
-        messages.success(request, " School \'{}\' is not registered.".format(signed_query_wrong))
+        messages.success(request, " School \'{}\' is not registered.".format(signed_query))
         return redirect('home-search')
     
 

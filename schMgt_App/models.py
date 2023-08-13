@@ -4,11 +4,27 @@ from django.db import models
 
 
 class School(models.Model):
+    PUBLIC = "PU"
+    PRIVATE = "PV"    
+    TYPE_OF_SCHOOL_CHOICES = [
+    (PUBLIC, "Public"),
+    (PRIVATE,"Private"),
+    
+    ]
+    
+    
+    
+    
     name            = models.CharField(max_length=150,blank=False)
     municipal       = models.CharField(max_length=50 ,blank=False)
     year_estd       = models.CharField(max_length=4, blank=False)
-    type            = models.CharField(max_length=7 , blank=False)
-    emis_code       = models.IntegerField(blank=False)
+    type            = models.CharField(
+                        max_length=7 ,
+                        choices= TYPE_OF_SCHOOL_CHOICES,
+                        default=PUBLIC,
+                        blank=False)
+    
+    emis_code       = models.CharField(max_length=50, blank=False)
     head_name       = models.CharField(max_length=50, blank=False)
     email           = models.EmailField(max_length=50, blank=False)
     tel_no          = models.CharField(max_length=10, blank=False)
