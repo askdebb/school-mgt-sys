@@ -17,6 +17,7 @@
         <div class="card-body">
           <h5 class="card-title">Personal Details</h5>
 
+{% if request.user.is_authenticated %}
           <!--  row 1 -->
           <div class="row">
             <div class="col">
@@ -131,6 +132,13 @@
             </div>
           </div>
         </div>
+
+{% else %}
+
+<div class="display-1">Sign in First </div>
+
+
+{% endif %}
 
 
         <!-- end of row 3-->

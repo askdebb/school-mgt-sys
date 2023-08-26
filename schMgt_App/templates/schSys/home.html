@@ -17,11 +17,11 @@
 
 
     <div class="container mt-5 col-4">
-        <form class="d-flex" method=POST role="search" action="{%url 'home-search' %}">
+        <form class="d-flex" method='POST' role="search" action=" {% url 'home-search' %} ">
 
             {% csrf_token %}
             <input class="form-control me-2" type="search" name="sch_query" placeholder="Search school here ..." aria-label="Search">
-            <button class="btn btn-outline-primary" type="submit">Go</button>
+            <a class="btn btn-outline-primary" type="submit">Go</a>
         </form>
     </div>
     

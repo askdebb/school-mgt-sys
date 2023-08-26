@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}
@@ -17,74 +17,82 @@
           <h3 class="card-title text-center  mt-4">Teacher Record Form</h3>
           <p class="card-text">
 
-            <form class="row g-3 mt-4" action="/html/teacherprofile.html" method="POST">
-                <div class="col-md-6">
-                    <label for="surname" class="form-label">Surname</label>
-                    <input type="text" class="form-control" placeholder="Surname" name="surname" aria-label="surname" required >
+            <form class="row g-3 mt-4" action="" method="POST" enctype="multipart/form-data">
+
+              {% csrf_token %}
+             
+                <div class="col-md-2">
+                    <label for="user" class="form-label">Username </label>
+                    {{ teacher_form.user | as_crispy_field }} 
+                    
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
+                    <label for="surname" class="form-label">Surname</label>
+                    {{ teacher_form.surname | as_crispy_field }} 
+                </div>
+                <div class="col-md-5">
                     <label for="othernames" class="form-label">Other names</label>
-                    <input type="text" class="form-control" placeholder="Other names" name="othernames" aria-label="Other names" required>
+                    {{ teacher_form.othernames | as_crispy_field }} 
                 </div>
 
                 <div class="col-md-6">
                     <label for="dateOfbirth" class="form-label">Date of birth:</label>
-                    <input type="date" id="dateOfbirth" class="form-control" aria-label="Other names" name="dateOfbirth" required> 
+                    {{ teacher_form.date_of_birth | as_crispy_field }}
                 </div>
                 <div class="col-md-6">
                   <label for="inputEmail4" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" name="email" required>
+                    {{ teacher_form.email | as_crispy_field }}
                 </div>
                 <div class="col-md-2">
                   <label for="staff-id" class="form-label">Staff ID</label>
-                  <input type="text" class="form-control" id="staff-id" name="staff-id" required>
+                  {{ teacher_form.staff_ID | as_crispy_field }}
                 </div>
                 <div class="col-md-3">
                   <label for="ntc" class="form-label">NTC Number</label>
-                  <input type="text" class="form-control" id="ntc" name="ntc" required>
+                  {{ teacher_form.NTC_no | as_crispy_field }}
                 </div>
                 <div class="col-md-3">
                   <label for="regNo" class="form-label">Registered Number</label>
-                  <input type="text" class="form-control" id="regNo" name="regNo" required>
+                  {{ teacher_form.regd_no | as_crispy_field }}
                 </div>
                 <div class="col-md-4">
                   <label for="ssnit" class="form-label">SSNIT Number</label>
-                  <input type="text" class="form-control" id="ssnit" name="ssnit" required>
+                  {{ teacher_form.SSNIT_no | as_crispy_field }}
                 </div>
                 <div class="col-md-2">
                   <label for="present-rank" class="form-label">Present Rank</label>
-                  <input type="text" class="form-control" id="present-rank" name="present-rank" required>
+                  {{ teacher_form.present_rank | as_crispy_field }}
                 </div>
                 <div class="col-md-4">
                   <label for="year-to-rank" class="form-label">Date Promoted to Rank</label>
-                  <input type="date" class="form-control" id="year-to-rank" name="year-to-rank" required>
+                  {{ teacher_form.date_promoted_to_rank | as_crispy_field }}
                 </div>
                 
                 <div class="col-md-3">
                   <label for="contact" class="form-label">Contact Number</label>
-                  <input type="text" class="form-control" id="contact" name="contact" required>
+                  {{ teacher_form.contact_no | as_crispy_field }}
                 </div>
                 <div class="col-md-3">
                   <label for="residence" class="form-label">Residence</label>
-                  <input type="text" class="form-control" id="residence" name="residence" required>
+                  {{ teacher_form.residence | as_crispy_field }}
                 </div>
                 <div class="col-md-2">
                   <label for="salary" class="form-label">Salary Level</label>
-                  <input type="text" class="form-control" id="salary" name="salary" required>
+                  {{ teacher_form.salary_level | as_crispy_field }}
                 </div>
                 <div class="col-md-3">
                   <label for="periods-per-week" class="form-label">Periods per week</label>
-                  <input type="number" class="form-control" id="periods-per-week" name="periods-per-week" required>
+                  {{ teacher_form.periods_per_week | as_crispy_field }}
                 </div>
                 <div class="col-md-3">
                   <label for="previous-station" class="form-label">Previous station</label>
-                  <input type="text" class="form-control" id="previous-station" name="previous-station" required>
+                  {{ teacher_form.previous_station | as_crispy_field }}
                 </div>
 
                 <div class="col-md-3">
                     <label for="gender" class="form-label">Gender</label> <br>
 
-                    <div class="form-check form-check-inline">
+                    {% comment %} <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" required checked>
                         <label class="form-check-label" for="exampleRadios1">
                         Male
@@ -95,44 +103,50 @@
                         <label class="form-check-label" for="exampleRadios2">
                         Female
                         </label>
-                    </div>
+                    </div> {% endcomment %}
+
+                    {{ teacher_form.gender | as_crispy_field }}
                 </div>
                 <div class="col-md-6">
                     <label for="date-of-appointment" class="form-label">Date of first Appointment</label>
-                    <input type="date" class="form-control" id="date-of-appointment" name="date-of-appointment" required>
+                    {{ teacher_form.date_of_first_appointment | as_crispy_field }}
                 </div>
                 <div class="col-md-6">
                     <label for="date-present-station" class="form-label">Date posted to present station</label>
-                    <input type="date" class="form-control" id="date-present-station" name="date-present-station" required>
+                    {{ teacher_form.date_posted_to_present_station | as_crispy_field }}
                 </div>
                 <div class="col-md-4">
                     <label for="subject-teaching" class="form-label">Subjects teaching</label>
-                    <input type="text" class="form-control" id="subject-teaching" name="subject-teaching" required>
+                    {{ teacher_form.subjects_teaching | as_crispy_field }}
                 </div>
                 <div class="col-md-4">
                     <label for="bank-name" class="form-label">Bank name</label>
-                    <input type="text" class="form-control" id="bank-name" name="bank-name" required>
+                    {{ teacher_form.bank_name| as_crispy_field }}
                 </div>
                 <div class="col-md-4">
                     <label for="account-number" class="form-label">Account no.</label>
-                    <input type="text" class="form-control" id="account-number" name="account-number" required>
+                    {{ teacher_form.account_no | as_crispy_field }}
                 </div>
 
-                <div class="col-md-12">
-                    <label for="academic-qualification-name" class="form-label">Name of Academic Qualification</label>
-                    <input type="text" class="form-control d-inline-block" id="academic-qualification-name" name="academic-qualification-name" placeholder="Name of Aca. Qualification" required>
+                <div class="col-md-6">
+                    <label for="academic-qualification-name" class="form-label">Academic Qualification</label>
+                    {{ teacher_form.academic_qualification | as_crispy_field }}
                     <label for="academic-qualification-date" class="form-label">Date of Academic Qualification</label>
-                    <input type="date" class="form-control d-inline-block" id="academic-qualification-date" name="academic-qualification-date" required>
+                    {{ teacher_form.date_of_academic_qualification | as_crispy_field }}
                   </div>
-                <div class="col-md-12">
-                    <label for="professional-qualification-name" class="form-label">Name of Professional Qualification</label>
-                    <input type="text" class="form-control d-inline-block" id="professional-qualification-name" name="professional-qualification-name" placeholder="Name of Prof. Qualification" required>
+                <div class="col-md-6">
+                    <label for="professional-qualification-name" class="form-label">Professional Qualification</label>
+                    {{ teacher_form.prof_qualification | as_crispy_field }}
                     <label for="professional-qualification-date" class="form-label">Date of Professional Qualification</label>
-                    <input type="date" class="form-control d-inline-block" id="professional-qualification-date" name="professional-qualification-date" required>
+                    {{ teacher_form.date_of_prof_qualification | as_crispy_field }}
                   </div>
-                <div class="col-md-12">
-                    <label for="schedule-name" class="form-label">Name of Duties Assigned</label>
-                    <input type="text" class="form-control d-inline-block" id="schedule-name" name="schedule-name" placeholder="Name of schedules/duties assigned" required>
+                <div class="col-md-6">
+                    <label for="schedule-name" class="form-label">Duties Assigned</label>
+                    {{ teacher_form.duties_assigned | as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    <label for="picture_upload" class="form-label">Upload a picture</label>
+                    {{ teacher_form.profile_image | as_crispy_field }}
                 </div>
                   
                 <div class="row text-center px-3 mt-3">

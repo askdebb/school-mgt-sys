@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import School
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegisterForm , SchoolForm
+from .forms import RegisterForm , SchoolForm, TeacherRecordForm
 
 
 # Create your views here.
@@ -13,12 +14,36 @@ def home(request):
 
     return render(request, 'schSys/home.html', {})
 
+@login_required
 def teacherRecordForm(request):
-    return render(request, 'schRecords/teacherRecordForm.html', {})
+    if request.user.is_authenticated:
+        teacher_form = TeacherRecordForm
+        if request.method == 'POST':
+            teacher_form = TeacherRecordForm(request.POST, request.FILES)
+            if teacher_form.is_valid():
+                teacher_form.instance.user = request.user
+                teacher_form.save()
+                messages.success(request, 'Details Saved Successfully')
+                return redirect ('teacher-record-form')
+            else:
+                messages.success(request, 'check your information provided well')
+                # return redirect ('teacher-record-form')  
+                return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})
+                
+        else:
+            # messages.success(request, 'check the information provided well')
+            # return redirect ('teacher-record-form')   
+            return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})       
+    else:
+        messages.success(request, 'kindly sign in first')    
+    return redirect('sign-in')
 
+@login_required
 def teacherProfile(request):
+    
     return render(request, 'schRecords/teacherprofile.html', {})
 
+@login_required
 def teacherList(request):
     return render(request, 'schRecords/teacherList.html', {})
 
@@ -87,20 +112,31 @@ def unsignedSearch(request):
         messages.success(request, "You searched for \"{}\" school, Sign in first for more information. Thank you.".format(unsigned_query))
         return redirect ('home')
 
-    
+
 def homeSearch(request):
-    if request.method == "POST":
-        schools = " "
-        signed_query = request.POST['sch_query']
-        schools = School.objects.filter(name__contains=signed_query)
-        school_age = 2023
-        # context = {'schools': schools }
-        return render (request, 'schSys/home_search.html',{'schools': schools, 'school_age': school_age })
-    else:
-       
+    if request.user.is_authenticated:
+    #     if request.method == "POST":
+    #         schools = School.objects.get(id=pk)
+    #         context = {'schools': schools}
+    #         return render(request, 'schSys/home-search.html', context)
+    #     return redirect ('home-search')
+    # else:
+    #     messages.success(request, "try signing in first")
+    #     return render (request, 'schSys/home.html')
         
-        messages.success(request, " School \'{}\' is not registered.".format(signed_query))
-        return redirect('home-search')
+        signed_query = " "
+        if request.method == "POST":
+            signed_query = request.POST['sch_query'].capitalize()
+            schools = School.objects.filter(name__contains=signed_query)
+            # school_age = 2023
+            context = {'schools': schools }
+            return render (request, 'schSys/home_search.html', context)
+        messages.success(request, "School \"{}\" is not registered.".format(signed_query))
+        return redirect('home')
+    else:
+        messages.success(request, "sign in First")
+        return redirect('sign-in')
+        # return render (request, 'schSys/home_search.html')
     
 
 

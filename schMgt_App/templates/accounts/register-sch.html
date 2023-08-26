@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 
+
 {% load crispy_forms_tags %}
 
 {% load static %}
+
+{% block title %}
+    Add Teacher Record | Enrolment
+    {% endblock title %}
+
+
 
 {% block content %}
 
@@ -28,7 +35,7 @@
                     </div>
                   </div>
                   <div class="mb-3 row">
-                    <label for="date-establised" class="col-sm-3 col-form-label">Date Established</label>
+                    <label for="date-establised" class="col-sm-3 col-form-label">Year Established</label>
                     <div class="col-sm-9">
                       {{ school_form.year_estd | as_crispy_field }}
                     </div>

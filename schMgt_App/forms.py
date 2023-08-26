@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms 
-from .models import School
+from .models import School, TeacherRecord
 
 
 class RegisterForm(UserCreationForm):
@@ -51,3 +51,69 @@ class SchoolForm(forms.ModelForm):
         self.fields['digital_add'].label = ''
         self.fields['location'].label = ''
         self.fields['sch_no'].label = ''
+
+class DateInputForm(forms.DateInput):
+    input_type = 'date'
+        
+class TeacherRecordForm(forms.ModelForm):
+    date_of_birth = forms.DateField(widget=DateInputForm)
+    date_promoted_to_rank = forms.DateField(widget=DateInputForm)
+    date_of_first_appointment = forms.DateField(widget=DateInputForm)
+    date_posted_to_present_station = forms.DateField(widget=DateInputForm)
+    date_of_academic_qualification = forms.DateField(widget=DateInputForm)
+    date_of_prof_qualification = forms.DateField(widget=DateInputForm)
+
+    class Meta:
+        model = TeacherRecord
+        fields = "__all__"
+        
+    def __init__(self, *args, **kwargs):
+        super(TeacherRecordForm, self).__init__(*args, **kwargs)
+        
+        self.fields['user'].label = ''
+        # self.fields['user'].widget.attrs['disabled'] = True
+        
+        self.fields['surname'].label = ''
+        self.fields['othernames'].label = ''
+        
+        self.fields['date_of_birth'].label = ''
+        self.fields['date_of_birth'].help_text = '<span class="form-text text-muted"><small>Format eg: 12-23-2023 </small></span>'
+        
+        self.fields['email'].label = ''
+        self.fields['staff_ID'].label = ''
+        self.fields['NTC_no'].label = ''
+        self.fields['regd_no'].label = ''
+        self.fields['SSNIT_no'].label = ''
+        self.fields['present_rank'].label = ''
+        
+        self.fields['date_promoted_to_rank'].label = ''
+        self.fields['date_of_birth'].help_text = '<span class="form-text text-muted"><small>Format eg: 12-23-2023 </small></span>'
+        
+        self.fields['contact_no'].label = ''
+        self.fields['residence'].label = ''
+        self.fields['salary_level'].label = ''
+        self.fields['periods_per_week'].label = ''
+        self.fields['previous_station'].label = ''
+        self.fields['gender'].label = ''
+        
+        self.fields['date_of_first_appointment'].label = ''
+        self.fields['date_of_birth'].help_text = '<span class="form-text text-muted"><small>Format eg: 12-23-2023 </small></span>'
+        
+        self.fields['date_posted_to_present_station'].label = ''
+        self.fields['date_of_birth'].help_text = '<span class="form-text text-muted"><small>Format eg: 12-23-2023 </small></span>'
+        
+        self.fields['subjects_teaching'].label = ''
+        self.fields['bank_name'].label = ''
+        self.fields['account_no'].label = ''
+        self.fields['academic_qualification'].label = ''
+        
+        self.fields['date_of_academic_qualification'].label = ''
+        self.fields['date_of_birth'].help_text = '<span class="form-text text-muted"><small>Format eg: 12-23-2023 </small></span>'
+        
+        self.fields['prof_qualification'].label = ''
+        
+        self.fields['date_of_prof_qualification'].label = ''
+        self.fields['date_of_birth'].help_text = '<span class="form-text text-muted"><small>Format eg: 12-23-2023 </small></span>'
+        
+        self.fields['duties_assigned'].label = ''
+        self.fields['profile_image'].label = ''

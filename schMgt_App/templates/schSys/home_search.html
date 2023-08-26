@@ -12,113 +12,81 @@
 
 
 
-{% if user.is_authenticated %}
+  {% if user.is_authenticated %}
 
 
 
-    <div class="container mt-5 col-4">
-        <form class="d-flex" method=POST role="search" action="{% url 'home-search' %}">
+      <div class="container mt-5 col-4">
+          <form class="d-flex" method='POST' role="search" action=" {% url 'home-search' %}">
 
-            {% csrf_token %}
-            <input class="form-control me-2" type="search" name="sch_query" placeholder="Search school here ..." aria-label="Search">
-            <button class="btn btn-outline-primary" type="submit">Go</button>
-        </form>
-    </div>
+              {% csrf_token %}
+              <input class="form-control me-2" type="search" name="sch_query" placeholder="Search school here ..." aria-label="Search">
+              <a class="btn btn-outline-primary" type="submit">Go</a>
+          </form>
+      </div>
 
-    
-    {% if schools %}
-    {%for school in schools %}
+      
+     
+    {% for school in schools %}
+        <!-- heading -->
+        <header class="my-5">
+            <h1 class="fs-4 text-center fw-bold">
+                Name of School: {{ school.name }} 
+            </h1>
+        </header>
+        <!-- heading ending -->
 
-    <!-- heading -->
-    <header class="my-5">
-        <h1 class="fs-4 text-center fw-bold">
-            Name of School: {{ school.name }} 
-        </h1>
-    </header>
-    <!-- heading ending -->
-
-
-    <!-- information of card -->
-    <div class="card container mt-2 mb-5" style="width: 60rem;" >
-        <div class="card-body">
-          <h5 class="card-title text-center">School Details</h5>
-          <div class=" card d-flex flex-row mb-3 justify-content-around">
-            <div class="p-2">
-                <div class="d-flex flex-column mb-3">
-                    <div class="p-2">Municipal/District:<b> {{ school.municipal }} </b></div>
-                    <div class="p-2">Year Establised: <b> {{ school.year_estd }} </b></div>
-                    <div class="p-2">Type: <b> {{ school.type }}</b></div>
-                    <div class="p-2">Emis Code: <b> {{ school.emis_code }} </b></div>
-                    <div class="p-2">School Age now: <b> {{ school_age }} </b></div>
-                </div>                  
+        <!-- information of card -->
+        <div class="card container mt-2 mb-5" style="width: 60rem;" >
+            <div class="card-body">
+              <h5 class="card-title text-center">School Details</h5>
+              <div class=" card d-flex flex-row mb-3 justify-content-around">
+                <div class="p-2">
+                    <div class="d-flex flex-column mb-3">
+                        <div class="p-2">Municipal/District:<b> {{ school.municipal }} </b></div>
+                        <div class="p-2">Year Establised: <b> {{ school.year_estd }} </b></div>
+                        <div class="p-2">Type: <b> {{ school.type }}</b></div>
+                        <div class="p-2">Emis Code: <b> {{ school.emis_code }} </b></div>
+                        <div class="p-2">School Age now: <b> {{ school_age }} </b></div>
+                    </div>                  
+                </div>
+                <div class="p-2">
+                    <div class="d-flex flex-column mb-3">
+                        <div class="p-2">Headteacher's Name: <b> {{ school.head_name }} </b></div>
+                        <div class="p-2">Email Address: <b> {{ school.email }} </b></div>
+                        <div class="p-2">Tel. No.: <b> {{ school.tel_no }} </b></div>
+                        <div class="p-2">Digital Address: <b> {{ school.digital_add }} </b></div>
+                        <div class="p-2">Location: <b> {{ school.location }} </b></div>
+                    </div>                  
+                </div>
+              </div>
+                <div class="card-footer text-body-secondary ">
+                    <a href="#" class="btn btn-primary col-4 d-block mx-auto py-2 ">Enter</a>
+                </div> 
             </div>
-            <div class="p-2">
-                <div class="d-flex flex-column mb-3">
-                    <div class="p-2">Headteacher's Name: <b> {{ school.head_name }} </b></div>
-                    <div class="p-2">Email Address: <b> {{ school.email }} </b></div>
-                    <div class="p-2">Tel. No.: <b> {{ school.tel_no }} </b></div>
-                    <div class="p-2">Digital Address: <b> {{ school.digital_add }} </b></div>
-                    <div class="p-2">Location: <b> {{ school.location }} </b></div>
-                </div>                  
-            </div>
-          </div>
-            <div class="card-footer text-body-secondary ">
-                <a href="#" class="btn btn-primary col-4 d-block mx-auto py-2 ">Enter</a>
-            </div> 
         </div>
-    </div>
 
-
+        <!--  educational quotes -->
+        <div class="card container mb-5" style="width: 60rem;">
+          <div class="card-header">
+            Quote
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>A well-known quote, contained in a blockquote element.</p>
+              <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+            </blockquote>
+          </div>
+      </div>
     {% endfor %}
+    
 
-   
-
-     <!--  educational quotes -->
-     <div class="card container mb-5" style="width: 60rem;">
-      <div class="card-header">
-        Quote
-      </div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-          <p>A well-known quote, contained in a blockquote element.</p>
-          <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-        </blockquote>
-      </div>
-  </div>
   {% else %}
-
-  <div class="container my-5 pt-5 col-4">
-   <h1>Enter the right information</h1>
-  </div>
-
-
-  {% endif %}
-
-    {% else %}
-
     <div class="container my-5 pt-5 col-4">
       You are to sign in first
     </div>
-    
-
-
-   
-
-    {% endif %}
+  {% endif %}
 
  
-
-    
-
-   
- 
-
-   
-
-
-        
-
-   
-
-    {% endblock  %}
+{% endblock  %}
 
