@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block title %}
-  Register-User | Enrolment 
+  Register Teacher | Enrolment 
 {% endblock %}
 
    
@@ -13,7 +13,7 @@
     <div class="card container mx-auto mt-5 mb-5 col-md-4 bg-secondary-gradient">
         <div class="card-body">
           <h3 class="card-title fs-1 text-center mt-4">Adjiringanor JHS</h3>
-          <small class="card-title text-md-center mt-2 mx-auto d-block text-muted">Registration Portal</small>
+          <small class="card-title text-md-center mt-2 mx-auto d-block text-muted">Teacher Registration Portal</small>
          
           <p class="card-text mt-5">
             <form class="row g-3" action=" " method="POST">
@@ -28,7 +28,7 @@
               </div> {% endcomment %}
 
 
-                <div class="alert alert-warning alert-dimissible  fade show " role="alert">
+                <div class="alert alert-warning alert-dimissible  fade show  fs-6" role="alert">
                   <small>Your Form Has Errors
                   {% for field in form %}
                     {% if field.errors %} 

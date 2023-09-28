@@ -11,6 +11,8 @@
 
     {% block content %}
 
+    
+
 
     <div class="card container mx-auto mt-5 formBody bg-secondary-gradient">
         <div class="card-body">
@@ -20,20 +22,60 @@
             <form class="row g-3 mt-4" action="" method="POST" enctype="multipart/form-data">
 
               {% csrf_token %}
-             
-                <div class="col-md-2">
+              {% if form.errors %}
+              {% comment %} <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  
+                </button>
+              </div> {% endcomment %}
+
+
+                <div class="alert alert-warning alert-dimissible  fade show  fs-6" role="alert">
+                  <small>Your Form Has Errors
+                  {% for field in form %}
+                    {% if field.errors %} 
+                    {{ field.errors }}
+                    {% endif %}
+                  {% endfor %}
+
+                  <button type="button" class="btn-close alat-btn" data-bs-dismiss="alert" arial-label="Close">
+                    
+                  </button>
+                </small>
+                </div>
+              {% endif %}  
+              
+              {% if user.is_superuser %}
+                <div class="col-md-4">
                     <label for="user" class="form-label">Username </label>
                     {{ teacher_form.user | as_crispy_field }} 
                     
                 </div>
-                <div class="col-md-5">
+              {% endif %}
+
+                {% if user.is_superuser %}
+                <div class="col-md-4">
                     <label for="surname" class="form-label">Surname</label>
                     {{ teacher_form.surname | as_crispy_field }} 
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <label for="othernames" class="form-label">Other names</label>
                     {{ teacher_form.othernames | as_crispy_field }} 
                 </div>
+
+                {% else %}
+
+                <div class="col-md-6">
+                    <label for="surname" class="form-label">Surname</label>
+                    {{ teacher_form.surname | as_crispy_field }} 
+                </div>
+                <div class="col-md-6">
+                    <label for="othernames" class="form-label">Other names</label>
+                    {{ teacher_form.othernames | as_crispy_field }} 
+                </div>
+
+                {% endif %}
 
                 <div class="col-md-6">
                     <label for="dateOfbirth" class="form-label">Date of birth:</label>

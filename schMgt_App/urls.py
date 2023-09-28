@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     # school system general links
     path ('', views.home, name='home'),
-    path ('sch_query_unsigned/', views.unsignedSearch, name='sch_query_unsigned'),
+    # path ('sch_query_unsigned/', views.unsignedSearch, name='sch_query_unsigned'),
     path ('home_search/', views.homeSearch, name='home-search'),
     
     

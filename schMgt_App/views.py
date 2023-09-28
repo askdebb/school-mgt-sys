@@ -3,40 +3,58 @@ from django.contrib.auth.decorators import login_required
 from .models import School
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegisterForm , SchoolForm, TeacherRecordForm
+from .forms import RegisterForm , SchoolForm, TeacherRecordForm, TeacherRecordAdminForm
+
 
 
 # Create your views here.
 
 
 def home(request):
-    # if request.method == 'POST':
-
-    return render(request, 'schSys/home.html', {})
-
-@login_required
-def teacherRecordForm(request):
-    if request.user.is_authenticated:
-        teacher_form = TeacherRecordForm
-        if request.method == 'POST':
-            teacher_form = TeacherRecordForm(request.POST, request.FILES)
-            if teacher_form.is_valid():
-                teacher_form.instance.user = request.user
-                teacher_form.save()
-                messages.success(request, 'Details Saved Successfully')
-                return redirect ('teacher-record-form')
-            else:
-                messages.success(request, 'check your information provided well')
-                # return redirect ('teacher-record-form')  
-                return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})
-                
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            searched = request.POST['sch_query'].capitalize()
+            schools = School.objects.filter(name__contains=searched)
+            return render(request, 'schSys/home_search.html', {'schools':schools})
         else:
-            # messages.success(request, 'check the information provided well')
-            # return redirect ('teacher-record-form')   
-            return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})       
+            messages.success(request, 'signin first to search for school')
+            return redirect('home')
     else:
-        messages.success(request, 'kindly sign in first')    
-    return redirect('sign-in')
+        return render(request, 'schSys/home.html', {})
+
+def teacherRecordForm(request):
+        if request.method == "POST":
+            if request.user.is_superuser:
+                teacher_form = TeacherRecordAdminForm
+                teacher_form = TeacherRecordAdminForm(request.POST, request.FILES)
+                if teacher_form.is_valid():
+                    teacher_form.save()
+                    messages.success(request, 'Details Saved Successfully')
+                    return redirect ('home')
+                else:
+                    messages.success(request, 'Teacher record with this User: {} already exists.'.format(request.user))
+                    return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})
+            else:
+                if request.user.is_authenticated:
+                    teacher_form = TeacherRecordForm
+                    if request.method == 'POST':
+                        teacher_form = TeacherRecordForm(request.POST, request.FILES)
+                        if teacher_form.is_valid():
+                            teacher_form.save()
+                            messages.success(request, 'Details Saved Successfully')
+                            return redirect ('home')
+                        else:
+                            messages.success(request, 'Teacher record with this User: {} already exists.'.format(request.user))
+                            return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})
+                    else:
+                        return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})
+        if request.user.is_superuser:
+            teacher_form = TeacherRecordAdminForm
+        else:
+            teacher_form = TeacherRecordForm
+        return render(request, 'schRecords/teacherRecordForm.html', {'teacher_form':teacher_form})     
+        # messages.success(request, 'kindly sign in first')    
+        # return redirect('sign-in')
 
 @login_required
 def teacherProfile(request):
@@ -80,8 +98,8 @@ def register(request):
         form = RegisterForm()
         context = {'form': form}
         return render (request, 'accounts/register.html', context )
-    context = {'form': form}
-    return render (request, 'accounts/register.html', context )
+    # context = {'form': form}
+    # return render (request, 'accounts/register.html', context )
 
 
 def registerSchool(request):
@@ -95,48 +113,35 @@ def registerSchool(request):
                 return redirect ('register-school')
             else:
                 messages.success(request, 'Retry again')
-                # return redirect ('register-school')
                 return render (request, 'accounts/register-sch.html', {'school_form': school_form} )
         return render (request, 'accounts/register-sch.html', {'school_form': school_form} )
     else:
         messages.success(request, 'sign in first')
         return redirect ('sign-in')
-        # return render (request, 'accounts/register-sch.html', {'school_form': school_form} )
+       
 
         
 
 
-def unsignedSearch(request):
-    if request.method == 'POST':
-        unsigned_query = request.POST['sch_query_unsigned']
-        messages.success(request, "You searched for \"{}\" school, Sign in first for more information. Thank you.".format(unsigned_query))
-        return redirect ('home')
+# def unsignedSearch(request):
+#     if request.method == 'POST':
+#         unsigned_query = request.POST['sch_query_unsigned']
+#         messages.success(request, "You searched for \"{}\" school, Sign in first for more information. Thank you.".format(unsigned_query))
+#         return redirect ('home')
 
 
 def homeSearch(request):
-    if request.user.is_authenticated:
-    #     if request.method == "POST":
-    #         schools = School.objects.get(id=pk)
-    #         context = {'schools': schools}
-    #         return render(request, 'schSys/home-search.html', context)
-    #     return redirect ('home-search')
-    # else:
-    #     messages.success(request, "try signing in first")
-    #     return render (request, 'schSys/home.html')
-        
-        signed_query = " "
+    if request.user.is_authenticated:       
         if request.method == "POST":
             signed_query = request.POST['sch_query'].capitalize()
             schools = School.objects.filter(name__contains=signed_query)
-            # school_age = 2023
             context = {'schools': schools }
             return render (request, 'schSys/home_search.html', context)
         messages.success(request, "School \"{}\" is not registered.".format(signed_query))
         return redirect('home')
     else:
-        messages.success(request, "sign in First")
+        messages.success(request, "sign in First to search for school")
         return redirect('sign-in')
-        # return render (request, 'schSys/home_search.html')
     
 
 
