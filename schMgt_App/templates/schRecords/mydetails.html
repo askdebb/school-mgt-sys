@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Facilitator Profile | Enrolment
+{% endblock %}
+
+   
+ 
+
+{% block content %}
+
+  
+
+    <div class="card container my-5" style="width: 70rem;">
+        <div class="card-body">
+          <h5 class="card-title">Personal Details</h5>
+
+{% if request.user.is_authenticated %}
+
+          {% if me_teacher.id %}
+          <!--  row 1 -->
+          <div class="row">
+            <div class="col">
+
+                <div class="card mb-3" >
+                    <div class="row g-0">
+                      <div class="col-md-5">
+                        <img src="{% static 'img/facilitator.jpg' %}" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-7 ps-5">
+                        <div class="card-body">
+                          <h5 class="card-title fs-4">{{ me_teacher.surname }} {{ me_teacher.othernames }}</h5>
+                            <div class="p-2">
+                                <div class="d-flex flex-column mb-3">
+                                    <div>Age:<b>{{ me_teacher.age }} </b></div>
+                                    <div>Sex: <b>{{ me_teacher.sex }}</b></div>
+                                    <div>Email: <b>{{ me_teacher.email }}</b></div>
+                                    <div>Relationship: <b>{{ me_teacher.relationship }}</b></div>
+                                    <div>Form Teacher: <b>{{ me_teacher.is_FormTeacher }}</b></div>
+                                </div>                  
+                                <button class="card-text btn btn-primary">Read more</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+
+    
+          </div>
+
+        <!-- end of row 1 -->
+
+        <hr>
+
+         <!--  row 2 -->
+         <div class="row">
+            <div class="col">
+
+                <div class="card container text-bg-light mb-3" style="max-width: 70rem;">
+                    <h5 class="card-title mt-3 text-center">Employment Details</h5>
+                    <div class="card-body">
+                        <div class=" card d-flex flex-row mb-3 justify-content-around">
+                            <div class="p-2">
+                                <div class="d-flex flex-column mb-3">
+                                    <div class="p-2">Subjects Teaching: <b>{{ me_teacher.staff_id }} </b></div>
+                                    <div class="p-2">Registered No.: <b>{{ me_teacher.regd_no }}</b></div>
+                                    <div class="p-2">NTC Number:: <b>{{ me_teacher.ntc_no }}</b></div>
+                                    <div class="p-2">SSNIT Number: <b>{{ me_teacher.ssnit_no }}</b></div>
+                                    <div class="p-2">Rank: <b>{{ me_teacher.rank }}</b></div>
+                                    <div class="p-2">Salary Level: <b>{{ me_teacher.salary }}</b></div>
+                                    <div class="p-2">No. of Periods per week: <b>{{ me_teacher.periods_per_week }}</b></div>
+                                    <div class="p-2">Previous station: <b>{{ me_teacher.previous_station }}</b></div>
+                                    
+                                </div>                  
+                            </div>
+                            <div class="p-2">
+                                <div class="d-flex flex-column mb-3">
+                                    
+                                    <div class="p-2">Additional Responsibilities: <b>{{ me_teacher.appointment_date }}</b></div>
+                                    <div class="p-2">Date to Present station: <b>{{ me_teacher.present_station_date }}</b></div>
+                                    <div class="p-2">Date Promoted to Rank: <b>{{ me_teacher.rank_date }}</b></div>
+                                    <div class="p-2">Professional Qualification: <b>{{ me_teacher.professional_qualification }}</b></div>
+                                    <div class="p-2">Date Obtained (P.Q): <b>{{ me_teacher.date_pq }}</b></div>
+                                    <div class="p-2">Academic Qualification: <b>{{ me_teacher.academic_quaification }}</b></div>
+                                    <div class="p-2">Date Obtained (A.Q): <b>{{ me_teacher.date_aq }}</b></div>
+                                    <div class="p-2">Contact number: <b>{{ me_teacher.contact_number }}</b></div>
+                                    
+                                </div>                  
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+
+
+            </div>
+
+           
+        </div>
+
+        <!-- end of row 2 -->
+
+        <hr>
+
+        <!-- row 3 -->
+
+        <div class="card container">
+          
+          <div class="card-body">
+            <h5 class="card-title text-center">Work Responsibilities</h5>
+            <div class=" card d-flex flex-row mb-3 justify-content-evenly">
+              <div class="p-2">
+                  <div class="d-flex flex-column mb-3">
+                      <div class="p-2">Municipal/District:<b>{{ school.municipal }} </b></div>
+                      <div class="p-2">Year Establised: <b>{{ school.year }}</b></div>
+                      <div class="p-2">Type: <b>{{ school.type }}</b></div>
+                      <div class="p-2">Emis Code: <b>{{ school.emis_code }}</b></div>
+                      <div class="p-2">School Number: <b>{{ school.bece_number }}</b></div>
+                  </div>                  
+              </div>
+              <div class="p-2">
+                  <div class="d-flex flex-column mb-3">
+                      <div class="p-2">Headteacher's Name: <b>{{ school.headteacher.name }}</b></div>
+                      <div class="p-2">Email Address: <b>{{ school.email_address }}</b></div>
+                      <div class="p-2">Tel. No.: <b>{{ school.contact_number }}</b></div>
+                      <div class="p-2">Digital Address: <b>{{ school.digital_address }}</b></div>
+                      <div class="p-2">Location: <b>{{ school.location }}</b></div>
+                  </div>                  
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% else %}
+
+        <!--  row 1 -->
+        <div class="row">
+          <div class="col">
+
+              <div class="card mb-3" >
+                  <div class="row g-0">
+                    <div class="col-md-5">
+                      <img src="{% static 'img/facilitator.jpg' %}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-7 ps-5">
+                      <div class="card-body">
+                        <h5 class="card-title fs-4">{{ me_teacher_admin.surname }} {{ me_teacher_admin.othernames }}</h5>
+                          <div class="p-2">
+                              <div class="d-flex flex-column mb-3">
+                                  <div>Age:<b>{{ me_teacher_admin.age }} </b></div>
+                                  <div>Sex: <b>{{ me_teacher_admin.sex }}</b></div>
+                                  <div>Email: <b>{{ me_teacher_admin.email }}</b></div>
+                                  <div>Relationship: <b>{{ me_teacher_admin.relationship }}</b></div>
+                                  <div>Form Teacher: <b>{{ me_teacher_admin.is_FormTeacher }}</b></div>
+                              </div>                  
+                              <button class="card-text btn btn-primary">Read more</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+          </div>
+
+  
+        </div>
+
+      <!-- end of row 1 -->
+
+      <hr>
+
+       <!--  row 2 -->
+       <div class="row">
+          <div class="col">
+
+              <div class="card container text-bg-light mb-3" style="max-width: 70rem;">
+                  <h5 class="card-title mt-3 text-center">Employment Details</h5>
+                  <div class="card-body">
+                      <div class=" card d-flex flex-row mb-3 justify-content-around">
+                          <div class="p-2">
+                              <div class="d-flex flex-column mb-3">
+                                  <div class="p-2">Subjects Teaching: <b>{{ me_teacher_admin.staff_id }} </b></div>
+                                  <div class="p-2">Registered No.: <b>{{ me_teacher_admin.regd_no }}</b></div>
+                                  <div class="p-2">NTC Number:: <b>{{ me_teacher_admin.ntc_no }}</b></div>
+                                  <div class="p-2">SSNIT Number: <b>{{ me_teacher_admin.ssnit_no }}</b></div>
+                                  <div class="p-2">Rank: <b>{{ me_teacher_admin.rank }}</b></div>
+                                  <div class="p-2">Salary Level: <b>{{ me_teacher_admin.salary }}</b></div>
+                                  <div class="p-2">No. of Periods per week: <b>{{ me_teacher_admin.periods_per_week }}</b></div>
+                                  <div class="p-2">Previous station: <b>{{ me_teacher_admin.previous_station }}</b></div>
+                                  
+                              </div>                  
+                          </div>
+                          <div class="p-2">
+                              <div class="d-flex flex-column mb-3">
+                                  
+                                  <div class="p-2">Additional Responsibilities: <b>{{ me_teacher_admin.appointment_date }}</b></div>
+                                  <div class="p-2">Date to Present station: <b>{{ me_teacher_admin.present_station_date }}</b></div>
+                                  <div class="p-2">Date Promoted to Rank: <b>{{ me_teacher_admin.rank_date }}</b></div>
+                                  <div class="p-2">Professional Qualification: <b>{{ me_teacher_admin.professional_qualification }}</b></div>
+                                  <div class="p-2">Date Obtained (P.Q): <b>{{ me_teacher_admin.date_pq }}</b></div>
+                                  <div class="p-2">Academic Qualification: <b>{{ me_teacher_admin.academic_quaification }}</b></div>
+                                  <div class="p-2">Date Obtained (A.Q): <b>{{ me_teacher_admin.date_aq }}</b></div>
+                                  <div class="p-2">Contact number: <b>{{ me_teacher_admin.contact_number }}</b></div>
+                                  
+                              </div>                  
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+          </div>
+
+         
+      </div>
+
+      <!-- end of row 2 -->
+
+      <hr>
+
+      <!-- row 3 -->
+
+      <div class="card container">
+        
+        <div class="card-body">
+          <h5 class="card-title text-center">Work Responsibilities</h5>
+          <div class=" card d-flex flex-row mb-3 justify-content-evenly">
+            <div class="p-2">
+                <div class="d-flex flex-column mb-3">
+                    <div class="p-2">Municipal/District:<b>{{ school.municipal }} </b></div>
+                    <div class="p-2">Year Establised: <b>{{ school.year }}</b></div>
+                    <div class="p-2">Type: <b>{{ school.type }}</b></div>
+                    <div class="p-2">Emis Code: <b>{{ school.emis_code }}</b></div>
+                    <div class="p-2">School Number: <b>{{ school.bece_number }}</b></div>
+                </div>                  
+            </div>
+            <div class="p-2">
+                <div class="d-flex flex-column mb-3">
+                    <div class="p-2">Headteacher's Name: <b>{{ school.headteacher.name }}</b></div>
+                    <div class="p-2">Email Address: <b>{{ school.email_address }}</b></div>
+                    <div class="p-2">Tel. No.: <b>{{ school.contact_number }}</b></div>
+                    <div class="p-2">Digital Address: <b>{{ school.digital_address }}</b></div>
+                    <div class="p-2">Location: <b>{{ school.location }}</b></div>
+                </div>                  
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        {% endif %}
+
+{% else %}
+
+<div class="display-1">Sign in First </div>
+
+
+{% endif %}
+
+
+        <!-- end of row 3-->
+          
+
+
+        </div>
+      </div>
+
+
+{% endblock %}

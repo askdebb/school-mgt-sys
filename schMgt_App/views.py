@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import School
+from .models import School, TeacherRecord, TeacherRecordAdmin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegisterForm , SchoolForm, TeacherRecordForm, TeacherRecordAdminForm
@@ -8,8 +8,6 @@ from .forms import RegisterForm , SchoolForm, TeacherRecordForm, TeacherRecordAd
 
 
 # Create your views here.
-
-
 def home(request):
     if request.method == "POST":
         if request.user.is_authenticated:
@@ -61,10 +59,44 @@ def teacherProfile(request):
     
     return render(request, 'schRecords/teacherprofile.html', {})
 
-@login_required
-def teacherList(request):
-    return render(request, 'schRecords/teacherList.html', {})
 
+def teacherList(request):
+    if request.user.is_superuser:
+            teachers = TeacherRecord.objects.all()
+            teachersAdmin = TeacherRecordAdmin.objects.all()
+            context = {
+                'teachers': teachers,
+                'teachersAdmin': teachersAdmin
+            }
+            return render(request, 'schRecords/teacherList.html',context)
+    messages.success(request, "Access Denied to that page.")
+    return redirect ('home')
+    # return render(request, 'schRecords/teacherList.html', {})
+
+def allteachersAdmin(request, teacher_id):
+    if request.user.is_superuser:
+        teacher_info_by_ADMIN  = TeacherRecordAdmin.objects.get(pk=teacher_id)
+        return render (request, 'schRecords/all-teachers-admin.html', {'teacher_info_by_ADMIN':teacher_info_by_ADMIN})
+    messages.success(request, "Access Denied to that page.")
+    return redirect ('home')
+
+def allteachers(request, teacher_id):
+    if request.user.is_superuser:
+        teacher_info  = TeacherRecord.objects.get(pk=teacher_id)
+        return render (request, 'schRecords/all-teachers.html', {'teacher_info':teacher_info})
+    messages.success(request, "Access Denied to that page.")
+    return redirect ('home')
+
+def updateAllTeacherAdmin(request, teacher_id):
+    if request.user.is_superuser:
+        teacher_info_by_ADMIN  = TeacherRecordAdmin.objects.get(pk=teacher_id)
+        teacher_form = TeacherRecordAdminForm(request.POST or None, instance = teacher_info_by_ADMIN)
+        if teacher_form.is_valid():
+            teacher_form.save()
+            return redirect ('teachers-list')
+        return render (request, 'schRecords/update-teacher-admin.html', {'teacher_form':teacher_form})
+    messages.success(request, "Access Denied to that page.")
+    return redirect ('home')
 
 def signIn(request):
     if request.method == 'POST':
@@ -85,7 +117,10 @@ def signOut(request):
     messages.success(request, 'Your are signed out.')
     return redirect ('sign-in')
             
-
+def mydetails(request, teacher_id):
+    me_teacher = TeacherRecord.objects.get(pk=teacher_id)
+    me_teacher_admin = TeacherRecordAdmin.objects.get(pk=teacher_id)
+    return render(request, 'schRecords/mydetails.html', {'me_teacher': me_teacher, 'me_teacher_admin':me_teacher_admin})
 
 def register(request):
     if request.method == 'POST':
@@ -107,7 +142,7 @@ def registerSchool(request):
         school_form = SchoolForm
         if request.method == "POST":
             school_form = SchoolForm(request.POST)
-            if school_form.is_valid:
+            if school_form.is_valid():
                 school_form.save()
                 messages.success(request, 'School Registered Successfully')
                 return redirect ('register-school')

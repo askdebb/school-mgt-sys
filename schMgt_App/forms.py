@@ -118,6 +118,8 @@ class TeacherRecordForm(forms.ModelForm):
         
         self.fields['duties_assigned'].label = ''
         self.fields['profile_image'].label = ''
+        self.fields['relationship_status'].label = ''
+        self.fields['form_teacher'].label = ''
         
 
 class TeacherRecordAdminForm(forms.ModelForm):
@@ -183,3 +185,5 @@ class TeacherRecordAdminForm(forms.ModelForm):
         
         self.fields['duties_assigned'].label = ''
         self.fields['profile_image'].label = ''
+        self.fields['relationship_status'].label = ''
+        self.fields['form_teacher'].label = ''

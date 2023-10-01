@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+        {{ teacher_info_by_ADMIN.surname }}'s Details  
+{% endblock  %}
+
+  
+
+{% block content %}
+      <div class="container">
+        <div class="card container my-5" style="width: 70rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Personal Details</h5>
+        
+        {% if request.user.is_authenticated %}
+                  <!--  row 1 -->
+                  <div class="row">
+                    <div class="col">
+        
+                        <div class="card mb-3" >
+                            <div class="row g-0">
+                              <div class="col-md-5 p-2">
+                                {% if teacher_info_by_ADMIN.profile_image %}
+                                    <img src="{{ teacher_info_by_ADMIN.profile_image.url }}" class="img-fluid rounded-start ps-5" style=" height: 15rem;" alt="...">
+                                {% endif %}
+                              </div>
+                              <div class="col-md-7 ps-5">
+                                <div class="card-body">
+                                  <h5 class="card-title fs-3">{{ teacher_info_by_ADMIN.surname }} {{ teacher_info_by_ADMIN.othernames }} || Age: <b>{{ teacher_info_by_ADMIN.age_now }} </b> </h5>
+                                    <div class="p-2">
+                                        <div class="d-flex flex-column mb-3">
+                                            <div>Years to Retirement: <b>{{ teacher_info_by_ADMIN.rtd_period }}</b></div>
+                                            <div>Sex: <b>{{ teacher_info_by_ADMIN.gender }}</b></div>
+                                            <div>Email: <b>{{ teacher_info_by_ADMIN.email }}</b></div>
+                                            <div>Relationship: <b>{{ teacher_info_by_ADMIN.relationship_status }}</b></div>
+                                            <div>Form Teacher: <b>{{ teacher_info_by_ADMIN.form_teacher }}</b></div>
+                                        </div>                  
+                                        <a class="card-text btn btn-primary" href="{% url 'update-teacher-admin' teacher_info_by_ADMIN.id  %}">Update</a>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+        
+                    </div>
+        
+            
+                  </div>
+        
+                <!-- end of row 1 -->
+        
+                <hr>
+        
+                 <!--  row 2 -->
+                 <div class="row">
+                    <div class="col">
+        
+                        <div class="card container text-bg-light mb-3" style="max-width: 70rem;">
+                            <h5 class="card-title mt-3 text-center">Employment Details</h5>
+                            <div class="card-body">
+                                <div class=" card d-flex flex-row mb-3 justify-content-around">
+                                    <div class="p-2">
+                                        <div class="d-flex flex-column mb-3">
+                                            <div class="p-2">Subjects Teaching: <b>{{ teacher_info_by_ADMIN.subjects_teaching }} </b></div>
+                                            <div class="p-2">Registered No.: <b>{{ teacher_info_by_ADMIN.regd_no }}</b></div>
+                                            <div class="p-2">NTC Number:: <b>{{ teacher_info_by_ADMIN.NTC_no }}</b></div>
+                                            <div class="p-2">SSNIT Number: <b>{{ teacher_info_by_ADMIN.SSNIT_no }}</b></div>
+                                            <div class="p-2">Rank: <b>{{ teacher_info_by_ADMIN.present_rank }}</b></div>
+                                            <div class="p-2">Salary Level: <b>{{ teacher_info_by_ADMIN.salary_level }}</b></div>
+                                            <div class="p-2">No. of Periods per week: <b>{{ teacher_info_by_ADMIN.periods_per_week }}</b></div>
+                                            <div class="p-2">Previous station: <b>{{ teacher_info_by_ADMIN.previous_station }}</b></div>
+                                            
+                                        </div>                  
+                                    </div>
+                                    <div class="p-2">
+                                        <div class="d-flex flex-column mb-3">
+                                            
+                                            <div class="p-2">Additional Responsibilities: <b>{{ teacher_info_by_ADMIN.duties_assigned }}</b></div>
+                                            <div class="p-2">Date to Present station: <b>{{ teacher_info_by_ADMIN.date_posted_to_present_station }}</b></div>
+                                            <div class="p-2">Date Promoted to Rank: <b>{{ teacher_info_by_ADMIN.date_promoted_to_rank }}</b></div>
+                                            <div class="p-2">Professional Qualification: <b>{{ teacher_info_by_ADMIN.prof_qualification }}</b></div>
+                                            <div class="p-2">Date Obtained (P.Q): <b>{{ teacher_info_by_ADMIN.date_of_prof_qualification }}</b></div>
+                                            <div class="p-2">Academic Qualification: <b>{{ teacher_info_by_ADMIN.academic_qualification }}</b></div>
+                                            <div class="p-2">Date Obtained (A.Q): <b>{{ teacher_info_by_ADMIN.date_of_academic_qualification }}</b></div>
+                                            <div class="p-2">Contact number: <b>{{ teacher_info_by_ADMIN.contact_no }}</b></div>
+                                            
+                                        </div>                  
+                                    </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+        
+        
+                    </div>
+        
+                   
+                </div>
+        
+                <!-- end of row 2 -->
+        
+                <hr>
+        
+                <!-- row 3 -->
+        
+                <div class="card container">
+                  
+                  <div class="card-body">
+                    <h5 class="card-title text-center">Work Responsibilities</h5>
+                    <div class=" card d-flex flex-row mb-3 justify-content-evenly">
+                      <div class="p-2">
+                          <div class="d-flex flex-column mb-3">
+                              <div class="p-2">Municipal/District:<b>{{ school.municipal }} </b></div>
+                              <div class="p-2">Year Establised: <b>{{ school.year }}</b></div>
+                              <div class="p-2">Type: <b>{{ school.type }}</b></div>
+                              <div class="p-2">Emis Code: <b>{{ school.emis_code }}</b></div>
+                              <div class="p-2">School Number: <b>{{ school.bece_number }}</b></div>
+                          </div>                  
+                      </div>
+                      <div class="p-2">
+                          <div class="d-flex flex-column mb-3">
+                              <div class="p-2">Headteacher's Name: <b>{{ school.headteacher.name }}</b></div>
+                              <div class="p-2">Email Address: <b>{{ school.email_address }}</b></div>
+                              <div class="p-2">Tel. No.: <b>{{ school.contact_number }}</b></div>
+                              <div class="p-2">Digital Address: <b>{{ school.digital_address }}</b></div>
+                              <div class="p-2">Location: <b>{{ school.location }}</b></div>
+                          </div>                  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+        {% else %}
+        
+        <div class="display-1">Sign in First </div>
+        
+        
+        {% endif %}
+        
+        
+                <!-- end of row 3-->
+                  
+        
+        
+                </div>
+              </div>
+           
+      </div>
+{% endblock  %}

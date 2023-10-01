@@ -12,8 +12,11 @@ urlpatterns = [
     
     # school records mgt  links
     path ('teacher-record-form/', views.teacherRecordForm, name='teacher-record-form'),
-    path ('teacher-profile/', views.teacherProfile, name='teacher-profile'),
-    path ('teacher-list/<int:pk>', views.teacherList, name='teacher-list'),
+    path ('mydetails/<int:teacher_id>', views.mydetails, name='mydetails'),
+    path ('teacher-list/', views.teacherList, name='teacher-list'),
+    path ('all-teachers-admin/<teacher_id>/', views.allteachersAdmin, name='all-teachers-admin'),
+    path ('all-teachers/<teacher_id>/', views.allteachers, name='all-teachers'),
+    path ('update-teacher-by-admin/<teacher_id>/', views.updateAllTeacherAdmin, name='update-teacher-admin'),
     
     
     # school account mgt links

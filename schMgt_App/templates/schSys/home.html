@@ -9,14 +9,22 @@
    
 {% block content %}
 
-
-
-
-
-
-
-
     <div class="container my-5 col-4">
+
+      {% comment %} now user name:{{ user.username }} <br>
+            now user id: {{ user.id}} <br> <br>
+      
+            now teacher record name: {% for teacher in teachers %}
+                                        {% if user.id == teacher.id %}
+                                            {{ teacher.surname }}
+                                        {% endif %}
+                                     {% endfor %} <br>
+            now teacher is: {% for teacher in teachers %}
+                                {% if user.id == teacher.id %}
+                                    {{ teacher.id }}
+                                {% endif %}
+                            {% endfor %}  <br> <br> {% endcomment %}
+
         <form class="d-flex" method='POST' role="search" action="">
 
             {% csrf_token %}
